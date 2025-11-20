@@ -14,7 +14,7 @@ import { useCardano } from "@cardano-foundation/cardano-connect-with-wallet";
 import { useState, useEffect, useCallback } from "react";
 
 import { getCreditUsageInfo } from "@/lib/token-usage";
-import { CreditCard, Calendar, Zap, Wallet } from "lucide-react";
+import { CreditCard, Calendar, Zap } from "lucide-react";
 
 // Dynamically import the TransactionBuilder with SSR disabled
 const DynamicTransactionBuilder = dynamic(
