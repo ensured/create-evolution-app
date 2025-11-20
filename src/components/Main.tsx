@@ -22,7 +22,6 @@ export default function Main() {
     if (user?.id) {
       try {
         const info = await getCreditUsageInfo(user.id);
-        console.log("Token info:", info);
         setTokenInfo(info);
       } catch (error) {
         console.error("Failed to fetch token info:", error);
@@ -31,17 +30,14 @@ export default function Main() {
   };
 
   useEffect(() => {
-    console.log("Main useEffect triggered. User ID:", user?.id);
     if (!user?.id) {
-      console.log("User ID missing, skipping fetch");
       return;
     }
-    console.log("Fetching token info for user:", user.id);
     fetchTokenInfo();
   }, [user?.id]);
 
   if (!user) {
-    return null; // Or a loading spinner / redirect
+    return null;
   }
 
   return (

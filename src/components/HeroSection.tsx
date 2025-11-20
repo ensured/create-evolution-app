@@ -55,14 +55,11 @@ export default function HeroSection({
 
     setTimeout(() => {
       try {
-        console.log("Attempting to play video, readyState:", player.readyState);
         if (player.readyState() >= 1) {
           player.muted(true); // Mute to bypass autoplay restrictions
           player.play()?.catch((error) => {
             console.error("Autoplay failed:", error);
           });
-        } else {
-          console.log("Video not ready yet");
         }
       } catch (error) {
         console.error("Error in autoplay:", error);

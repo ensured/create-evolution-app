@@ -238,7 +238,6 @@ export async function getCreditUsageInfo(userId: string): Promise<{
 }> {
   try {
     const tokenUsage = await getOrCreateCreditUsage(userId);
-    console.log(tokenUsage);
     const planLimits = await getPlanLimitsConfig();
 
     if (!planLimits) {

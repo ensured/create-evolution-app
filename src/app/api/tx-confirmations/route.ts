@@ -70,9 +70,6 @@ export async function GET(request: NextRequest) {
       if (creditResult.success) {
         creditedTransactions.add(txHash);
         credited = true;
-        console.log(
-          `Successfully credited 100 credits to user ${userId} for transaction ${txHash}`
-        );
       } else {
         console.error(`Failed to credit user ${userId}:`, creditResult.error);
       }

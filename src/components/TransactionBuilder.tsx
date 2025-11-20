@@ -85,7 +85,6 @@ export default function TransactionBuilder({ tokensRemaining, onTransactionSucce
           }
         } else if (response.status === 404) {
           // Transaction not yet on-chain, this is normal - keep polling
-          console.log("Transaction pending, waiting for confirmation...");
         } else {
           // Other errors
           console.error("Error checking confirmations:", response.statusText);
@@ -178,7 +177,9 @@ export default function TransactionBuilder({ tokensRemaining, onTransactionSucce
   return (
     <div className="px-5 py-4 space-y-4">
       {/* Main action button */}
-      {tokensRemaining !== 100 ? (
+      {tokensRemaining > 0 ? (
+        <button className="text-zinc-100 w-full py-2.5 rounded-md text-xs font-medium transition-all bg-green-900/50 cursor-not-allowed border border-green-900/30">Use remaining tokens before buying more</button>
+      ) : (
         <button
           className={`text-zinc-100 w-full py-2.5 rounded-md text-xs font-medium transition-all focus:outline-none focus:ring-1 ${isLoading
             ? "bg-green-900/50 cursor-not-allowed border border-green-900/30"
@@ -197,8 +198,7 @@ export default function TransactionBuilder({ tokensRemaining, onTransactionSucce
           )
           }
         </button >
-      ) : (
-        <button className="text-zinc-100 w-full py-2.5 rounded-md text-xs font-medium transition-all bg-green-900/50 cursor-not-allowed border border-green-900/30">You have maximum 100 credits</button>
+
       )}
 
       {/* Error state */}
