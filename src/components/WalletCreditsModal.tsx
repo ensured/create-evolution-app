@@ -140,17 +140,18 @@ export function WalletCreditsModal({ open, onOpenChange, creditInfo: propCreditI
                                 <span className="text-xl font-bold capitalize">{displayCreditInfo ? displayCreditInfo.plan : "-"}</span>
                             </div>
                         </div>
-                        {displayCreditInfo?.plan !== "pro" && (
-                            <div className="flex flex-col items-center p-3 bg-muted/30 rounded-lg border border-border/50">
-                                <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-1">Resets</span>
-                                <div className="flex items-center gap-1.5">
-                                    <Calendar className="w-4 h-4 text-green-500" />
-                                    <span className="text-sm font-bold">
-                                        {displayCreditInfo?.resetDate ? new Date(displayCreditInfo.resetDate).toLocaleDateString(undefined, { month: 'short', day: 'numeric' }) : "-"}
-                                    </span>
-                                </div>
+
+                        <div className="flex flex-col items-center p-3 bg-muted/30 rounded-lg border border-border/50">
+                            <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-1">Reset</span>
+                            <div className="flex items-center gap-1.5">
+                                <Calendar className="w-4 h-4 text-green-500" />
+                                <span className="text-sm font-bold">
+                                    {displayCreditInfo?.plan === "pro" ? "N/A" :
+                                        displayCreditInfo?.resetDate ? new Date(displayCreditInfo.resetDate).toLocaleDateString(undefined, { month: 'short', day: 'numeric' }) : "-"}
+                                </span>
                             </div>
-                        )}
+                        </div>
+
                     </div>
 
                     {/* Wallet Connection */}
