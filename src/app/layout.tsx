@@ -5,6 +5,11 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { ThemeProvider } from "@/lib/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { Header } from "@/components/Header";
+import {
+  getOrganizationSchema,
+  getWebSiteSchema,
+  getSoftwareApplicationSchema,
+} from "@/lib/structured-data";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,27 +23,47 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://depth-oracle.vercel.app"),
-  title: "Depth Oracle - AI Jungian Psychology Companion",
-  description:
-    "Transform your self-awareness with AI-powered Jungian psychology tools. Explore archetypes, shadow work, and personal growth.",
-  keywords:
-    "Jungian psychology, shadow work, AI therapy, personal growth, self-discovery, archetypes, individuation, emotional intelligence",
-  authors: [{ name: "Depth Oracle Team" }],
-  icons: {
-    icon: "/og-image.ico",
+  title: {
+    default: "Depth Oracle - AI Jungian Psychology Companion",
+    template: "%s | Depth Oracle",
   },
+  description:
+    "Transform your self-awareness with AI-powered Jungian psychology tools. Explore archetypes, shadow work, and personal growth with Elara, your AI companion.",
+  keywords: [
+    "Jungian psychology",
+    "shadow work",
+    "AI therapy",
+    "personal growth",
+    "self-discovery",
+    "archetypes",
+    "individuation",
+    "emotional intelligence",
+    "active imagination",
+    "dream analysis",
+    "anima animus",
+    "persona",
+    "collective unconscious",
+  ],
+  authors: [{ name: "Depth Oracle Team" }],
+  creator: "Depth Oracle Team",
+  publisher: "Depth Oracle",
+  icons: {
+    icon: "/lucid-evolution-al-red.svg",
+    apple: "/og-image.png",
+  },
+  manifest: "/manifest.json",
   openGraph: {
     title: "Depth Oracle - AI Jungian Psychology Companion",
     description:
-      "Transform your self-awareness with AI-powered Jungian psychology tools.",
-    url: "https://depth-oracle.vercel.app", // Replace with your actual URL
+      "Transform your self-awareness with AI-powered Jungian psychology tools. Explore archetypes, shadow work, and personal growth with Elara.",
+    url: "https://depth-oracle.vercel.app",
     siteName: "Depth Oracle",
     images: [
       {
-        url: "/og-image.ico", // Use the same image for OG
+        url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Depth Oracle - AI Jungian Insights",
+        alt: "Depth Oracle - AI Jungian Psychology Companion",
       },
     ],
     locale: "en_US",
@@ -46,10 +71,11 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Depth Oracle - AI Jungian Shadow Work",
+    title: "Depth Oracle - AI Jungian Psychology Companion",
     description:
-      "Transform your self-awareness with AI-powered Jungian psychology tools.",
-    images: ["/og-image.ico"],
+      "Transform your self-awareness with AI-powered Jungian psychology tools. Explore archetypes, shadow work, and personal growth.",
+    images: ["/og-image.png"],
+    creator: "@depthoracle",
   },
   robots: {
     index: true,
@@ -62,6 +88,9 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  alternates: {
+    canonical: "https://depth-oracle.vercel.app",
+  },
 };
 
 export default function RootLayout({
@@ -69,6 +98,10 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const organizationSchema = getOrganizationSchema();
+  const websiteSchema = getWebSiteSchema();
+  const softwareSchema = getSoftwareApplicationSchema();
+
   return (
     <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
@@ -77,6 +110,24 @@ export default function RootLayout({
             rel="icon"
             href="/lucid-evolution-al-red.svg"
             type="image/svg+xml"
+          />
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify(organizationSchema),
+            }}
+          />
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify(websiteSchema),
+            }}
+          />
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify(softwareSchema),
+            }}
           />
         </head>
         <body

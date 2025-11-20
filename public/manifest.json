@@ -1,0 +1,24 @@
+{
+  "name": "Depth Oracle - AI Jungian Psychology Companion",
+  "short_name": "Depth Oracle",
+  "description": "Transform your self-awareness with AI-powered Jungian psychology tools. Explore archetypes, shadow work, and personal growth.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#8b5cf6",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/lucid-evolution-al-red.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/og-image.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
