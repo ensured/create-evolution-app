@@ -9,8 +9,7 @@ import Link from "next/link";
 import { GradientText } from "./ui/shadcn-io/gradient-text";
 import FeedbackButton from "./FeedbackButton";
 import { QuoteToast } from "./QuoteToast";
-import ogImage from "../../public/og-image-transparent.png";
-import Image from "next/image";
+
 export function Header() {
   const { user, isLoaded } = useUser();
 
