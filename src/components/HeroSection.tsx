@@ -174,7 +174,7 @@ export default function HeroSection({
                 className="text-lg h-14 w-40 cursor-pointer  select-none shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl border-zinc-700"
                 onClick={() => setShowWalletModal(true)}
               >
-                Buy Credits <span className="text-base ml-2">💎</span>
+                Buy Credits <span className="text-base">💎</span>
               </Button>
             </div>
           </SignedIn>

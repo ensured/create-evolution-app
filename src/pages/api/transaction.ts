@@ -34,7 +34,7 @@ export default async function handler(
     const lucid = await initLucid();
 
     // Get address from request body
-    const { address } = req.body;
+    const { address, walletBalance } = req.body;
 
     if (!address) {
       return res.status(400).json({ error: "Address is required" });
@@ -55,12 +55,31 @@ export default async function handler(
       .complete();
 
     // Return the transaction CBOR for the client to sign and submit
-    return res.status(200).json({ tx: tx.toCBOR() });
+    return res.status(200).json({ tx: tx.toCBOR(), error: null });
   } catch (error) {
-    console.error("Error building transaction:", error);
-    return res.status(500).json({
-      error: "Failed to build transaction",
-      details: error instanceof Error ? error.message : String(error),
+    let jsonError = JSON.stringify(error);
+    const errorObject = JSON.parse(jsonError);
+    jsonError = JSON.stringify(errorObject.cause.failure.cause);
+    console.log(
+      typeof jsonError,
+      jsonError.includes(
+        "Your wallet does not have enough funds to cover the required assets"
+      )
+    );
+    let err;
+    if (
+      jsonError.includes(
+        "Your wallet does not have enough funds to cover the required assets"
+      )
+    ) {
+      err =
+        "Your wallet does not have enough funds for the required tx, please fund your wallet.";
+    } else {
+      err = "Failed to build transaction";
+    }
+    return res.status(200).json({
+      tx: null,
+      error: err,
     });
   }
 }

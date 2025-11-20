@@ -136,24 +136,26 @@ export default function TransactionBuilder({ creditsRemaining, onTransactionSucc
       // Select wallet
       lucid.selectWallet.fromAPI(api);
 
-      if (accountBalance < 5.25) {
-        throw new Error("Not enough ada in wallet");
-      }
 
+      // if (accountBalance < 5) {
+      //   throw new Error("Not enough ada in wallet");
+      // }
       // Make API request to build transaction
       const response = await fetch("/api/transaction", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ address: usedAddresses[0] }),
+        body: JSON.stringify({ address: usedAddresses[0], walletBalance: accountBalance }),
       });
+      console.log(response);
 
-      if (!response.ok) {
-        throw new Error("Failed to get transaction from server");
+
+
+      const { tx, error } = await response.json();
+      if (error) {
+        throw new Error(error);
       }
-
-      const { tx } = await response.json();
 
       // Sign transaction with wallet
       const signedTx = await lucid.fromTx(tx).sign.withWallet().complete();
