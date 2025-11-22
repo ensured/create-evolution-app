@@ -47,10 +47,6 @@ export const metadata: Metadata = {
   authors: [{ name: "Depth Oracle Team" }],
   creator: "Depth Oracle Team",
   publisher: "Depth Oracle",
-  icons: {
-    icon: "/lucid-evolution-al-red.svg",
-    apple: "/og-image.png",
-  },
   manifest: "/manifest.json",
   openGraph: {
     title: "Depth Oracle - AI Jungian Psychology Companion",
@@ -60,7 +56,7 @@ export const metadata: Metadata = {
     siteName: "Depth Oracle",
     images: [
       {
-        url: "/og-image.png",
+        url: "/og-image-transparent.png",
         width: 1200,
         height: 630,
         alt: "Depth Oracle - AI Jungian Psychology Companion",
@@ -74,7 +70,7 @@ export const metadata: Metadata = {
     title: "Depth Oracle - AI Jungian Psychology Companion",
     description:
       "Transform your self-awareness with AI-powered Jungian psychology tools. Explore archetypes, shadow work, and personal growth.",
-    images: ["/og-image.png"],
+    images: ["/og-image-transparent.png", "/icon.png"],
     creator: "@depthoracle",
   },
   robots: {
@@ -106,11 +102,7 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
         <head>
-          <link
-            rel="icon"
-            href="/lucid-evolution-al-red.svg"
-            type="image/svg+xml"
-          />
+
           <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{

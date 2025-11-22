@@ -34,11 +34,7 @@ export function getOrganizationSchema(): Organization {
       "AI-powered Jungian psychology companion for personal growth and self-discovery",
     url: "https://depth-oracle.vercel.app",
     logo: "https://depth-oracle.vercel.app/og-image.png",
-    sameAs: [
-      // Add your social media profiles here when available
-      // "https://twitter.com/depthoracle",
-      // "https://linkedin.com/company/depthoracle",
-    ],
+    sameAs: ["https://twitter.com/regirock8080"],
   };
 }
 
